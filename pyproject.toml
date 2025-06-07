@@ -1,0 +1,43 @@
+[build-system]
+requires = [
+    "setuptools>=61", # Updated for better PEP 621 support
+    "wheel",
+    "pybind11>=2.10.0", # Ensure this is a recent enough version
+    "numpy>=1.19.0",    # pybind11 numpy support might need a specific version
+]
+build-backend = "setuptools.build_meta"
+# backend-path = ["."] # Optional, but can sometimes help
+
+[project]
+name = "microaggregation"
+version = "0.1.7" # Define version here
+description = "Fast C++ implementation of microaggregation algorithms for data privacy"
+readme = "README.md"
+license = {text = "MIT"} # Modern SPDX identifier or license text
+authors = [
+    {name = "Reza Mortazavi", email = "ir1979@gmail.com"},
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    # "License :: OSI Approved :: MIT License", # REMOVE THIS LINE
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: C++",
+]
+requires-python = ">=3.7"
+dependencies = [
+    "numpy>=1.19.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=6.0", "pytest-benchmark", "build", "twine"]
+
+[project.urls]
+Homepage = "https://github.com/ir1979/microaggregation" # Update with your actual URL
+"Bug Tracker" = "https://github.com/ir1979/microaggregation/issues" # Update

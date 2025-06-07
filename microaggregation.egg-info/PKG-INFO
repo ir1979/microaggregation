@@ -1,0 +1,68 @@
+Metadata-Version: 2.4
+Name: microaggregation
+Version: 0.1.7
+Summary: Fast C++ implementation of microaggregation algorithms for data privacy
+Author-email: Reza Mortazavi <ir1979@gmail.com>
+License: MIT
+Project-URL: Homepage, https://github.com/ir1979/microaggregation
+Project-URL: Bug Tracker, https://github.com/ir1979/microaggregation/issues
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: C++
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: numpy>=1.19.0
+Provides-Extra: dev
+Requires-Dist: pytest>=6.0; extra == "dev"
+Requires-Dist: pytest-benchmark; extra == "dev"
+Requires-Dist: build; extra == "dev"
+Requires-Dist: twine; extra == "dev"
+
+# Microaggregation
+
+Fast C++ implementation of microaggregation algorithms for data privacy protection.
+
+## Features
+
+- High-performance C++ implementation of SSE dynamic programming
+- Python fallback when C++ extension is not available
+- Compatible with NumPy arrays
+- Timing utilities for performance measurement
+
+## Installation
+
+bash pip install microaggregation
+
+## Usage
+
+```python
+import numpy as np
+from microaggregation import calculate_sse_dynamic, calculate_total_variance, get_timing
+
+# Example usage:
+my_data = np.random.rand(100, 5)
+min_k = 3
+
+sse_value = calculate_sse_dynamic(my_data, min_k)
+# sse_value_py_only = calculate_sse_dynamic(my_data, min_k, use_cpp=False) # To force Python
+
+total_var = calculate_total_variance(my_data)
+
+timers = get_timing()
+start_wall = timers['wall_time']()
+# ... some operation ...
+end_wall = timers['wall_time']()
+print(f"Wall time: {end_wall - start_wall}")
+
+print(f"SSE: {sse_value}, Total Variance: {total_var}")
+print(f"IL: {sse_value / total_var * 100 if total_var != 0 else float('inf')}")
+```
+
+
