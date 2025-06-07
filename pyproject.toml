@@ -10,7 +10,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "microaggregation"
-version = "0.1.7" # Define version here
+version = "0.1.9" # Define version here
 description = "Fast C++ implementation of microaggregation algorithms for data privacy"
 readme = "README.md"
 license = {text = "MIT"} # Modern SPDX identifier or license text

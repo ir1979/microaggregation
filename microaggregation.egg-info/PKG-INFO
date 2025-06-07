@@ -1,7 +1,9 @@
 Metadata-Version: 2.4
 Name: microaggregation
-Version: 0.1.7
+Version: 0.1.9
 Summary: Fast C++ implementation of microaggregation algorithms for data privacy
+Home-page: https://github.com/ir1979/microaggregation
+Author: Reza Mortazavi
 Author-email: Reza Mortazavi <ir1979@gmail.com>
 License: MIT
 Project-URL: Homepage, https://github.com/ir1979/microaggregation
@@ -24,6 +26,9 @@ Requires-Dist: pytest>=6.0; extra == "dev"
 Requires-Dist: pytest-benchmark; extra == "dev"
 Requires-Dist: build; extra == "dev"
 Requires-Dist: twine; extra == "dev"
+Dynamic: author
+Dynamic: home-page
+Dynamic: requires-python
 
 # Microaggregation
 

@@ -10,7 +10,15 @@
 #include <algorithm>
 #include <limits>
 #include <cstddef>
+#include <cstring>
+#include <algorithm> // Required for std::fill
+#include <cmath> // For sqrt, fabs, etc.
+#include <cfloat> // For DBL_MAX
 #include "globalParameters.h"
+
+
+#define DOUBLE_MAX_VALUE DBL_MAX // This line uses DBL_MAX
+#define DOUBLE_MIN_VALUE -DBL_MAX // This line uses -DBL_MAX
 
 
 class precalculatedStats

@@ -497,7 +497,8 @@ int *intAlloc1D(int r) {
 
 int *intAlloc1D(int r, int initialValue) {
 	int *t = new int[r];
-	std::memset(t,initialValue,r);
+	//std::memset(t,initialValue,r);
+	std::fill(t, t + r, initialValue);
 
 	return t;
 }
@@ -1463,7 +1464,7 @@ double p(double x) {
 	return (value);
 }
 
-//-­------------------------------------------------------
+//-ï¿½------------------------------------------------------
 //--------------------------------------------------------
 double loss_info_vector(double* v1, double* v2, double* var, int dimensio) {
 	int i;
@@ -1480,7 +1481,7 @@ double loss_info_vector(double* v1, double* v2, double* var, int dimensio) {
 	return acum / (double) dimensio;
 }
 
-//-­------------------------------------------------------
+//-ï¿½------------------------------------------------------
 //--------------------------------------------------------
 double loss_info_mskatrix(double* mat1, double* mat2, double* var, int dimensio) {
 	int i, j, index;
@@ -1505,7 +1506,7 @@ double loss_info_mskatrix(double* mat1, double* mat2, double* var, int dimensio)
 	return acum / (double) n_DATA;
 }
 
-//-­------------------------------------------------------
+//-ï¿½------------------------------------------------------
 //--------------------------------------------------------
 void loss_info_mskatrix2(double* mat1, double* mat2, double* var, int dimensio) {
 	int i, j, index;
@@ -1528,7 +1529,7 @@ void loss_info_mskatrix2(double* mat1, double* mat2, double* var, int dimensio) 
 	}
 }
 
-//-­------------------------------------------------------
+//-ï¿½------------------------------------------------------
 //--------------------------------------------------------
 double loss_info_quantils(double** DATA_org, double** DATA_msk, int n_columns, int n_records, double* varq_org) {
 	double* vector_org;

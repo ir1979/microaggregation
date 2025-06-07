@@ -1,5 +1,5 @@
 include README.md
-include LICENSE
+# include LICENSE
 graft src
 graft microaggregation
 recursive-exclude * __pycache__

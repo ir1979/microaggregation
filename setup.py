@@ -1,50 +1,60 @@
-from setuptools import setup, find_packages # find_packages might not be strictly needed if packages are simple
+# setup.py
+from setuptools import setup, find_packages
 from pybind11.setup_helpers import Pybind11Extension, build_ext
 import pybind11
 import os
 
 # Define the C++ extension module
-# The name must match what you import in Python, e.g., from microaggregation.microaggregation_cpp import ...
 ext_modules = [
     Pybind11Extension(
-        "microaggregation.microaggregation_cpp", # This will create microaggregation_cpp.pyd inside the microaggregation package
+        "microaggregation.microaggregation_cpp",
         sources=[
             "src/microaggregation_cpp.cpp",
             "src/utility.cpp",
             "src/myTiming.cpp"
         ],
         include_dirs=[
-            "src",  # For your local headers like myTiming.h, utility.h
+            "src",
             pybind11.get_include(),
-            # Add other necessary include paths here if any (e.g., for NumPy if not handled by pybind11)
-            # os.path.join(pybind11.get_include(True), '..', 'include'), # Sometimes needed for pybind11 internals
-            # np.get_include() # If you were using NumPy C API directly in C++
         ],
         language='c++',
-        cxx_std=14, # or 17 if your code uses C++17 features
-        # Optional: Add compiler/linker arguments if needed
-        # extra_compile_args=['/EHsc', '/bigobj'] if platform.system() == "Windows" else [],
-        # extra_link_args=[],
+        cxx_std=14,
     ),
 ]
 
-# Read the long description from README for PyPI
+# Read the long description from README
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setup(
-    # name, version, author, etc., are now primarily managed by pyproject.toml
-    # However, some can be kept for compatibility or if setup.py is run directly by older tools.
-    # For a pyproject.toml-driven build, these might be ignored or cause warnings if duplicated.
-    # Let's keep it minimal here, relying on pyproject.toml.
-    long_description=long_description, # Often good to provide for setup.py context
+    name="microaggregation",  # CRUCIAL
+    version="0.1.8",          # CRUCIAL - Update this to your current version
+    author="Reza Mortazavi",
+    author_email="ir1979@gmail.com",
+    description="Fast C++ implementation of microaggregation algorithms for data privacy",
+    long_description=long_description,
     long_description_content_type="text/markdown",
-    packages=find_packages(where="."), # Explicitly tell it where to find packages
-                                       # e.g. ['microaggregation'] if your microaggregation Python module is in the root
-                                       # If microaggregation/microaggregation.py, then find_packages() is fine.
-                                       # Your structure is microaggregation/microaggregation/__init__.py
+    url="https://github.com/ir1979/microaggregation", # Update if different
+    license="MIT", # Or use license_files if preferred with newer setuptools
+    packages=find_packages(), # Should find ['microaggregation']
     ext_modules=ext_modules,
     cmdclass={"build_ext": build_ext},
-    zip_safe=False, # C-extensions generally make the package not zip-safe
-    # install_requires, python_requires, classifiers are better in pyproject.toml
+    zip_safe=False,
+    install_requires=[
+        "numpy>=1.19.0",
+    ],
+    python_requires=">=3.7",
+    classifiers=[
+        "Development Status :: 3 - Alpha",
+        "Intended Audience :: Science/Research",
+        "Topic :: Scientific/Engineering :: Information Analysis",
+        "License :: OSI Approved :: MIT License", # Still useful for older setuptools
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
+        "Programming Language :: C++",
+    ],
 )
